@@ -11,10 +11,15 @@ endif()
 # Start project
 ################################################################################
 #project(##### VERSION 0.1 DESCRIPTION "#####" LANGUAGES NONE)
-set(PROJECT_NAME sample_02_use_library)
-set(ROOT_NAMESPACE sample_02_use_library)
+set(PROJECT_NAME sample_03_use_library_c)
+set(ROOT_NAMESPACE sample_03_use_library_c)
 message(STATUS "PROJECT_NAME : [${PROJECT_NAME}]")
 message(STATUS "ROOT_NAMESPACE : [${ROOT_NAMESPACE}]")
+
+################################################################################
+# find_package
+################################################################################
+#find_package(### REQUIRED)
 
 ################################################################################
 # Language C
@@ -71,7 +76,7 @@ if(WIN32)
                 "/MD"           # Tells the linker to search for unresolved references in a multithreaded, dynamic-link runtime library. ( Release )
             ">"
             # add flag
-            "/EHsc"             # Specifies the model of exception handling to be performed.
+            "/EHa"             # Specifies the model of exception handling to be performed.
             "/Wall"             # Enables warning and error diagnostics.
         ">"
     )
@@ -124,4 +129,4 @@ endif()
 ################################################################################
 # Sub-projects
 ################################################################################
-add_subdirectory(set_exe_name)
+add_subdirectory(use_library_c)

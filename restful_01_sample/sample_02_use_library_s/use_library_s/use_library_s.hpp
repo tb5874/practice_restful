@@ -12,37 +12,26 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// dll - export, import
-#if ( defined(_WIN32) || defined(_WIN64) )
-
-#ifdef EXPORT_FLAG
-#define DLL_FLAG __declspec(dllexport)
-#else
-#define DLL_FLAG __declspec(dllimport)
-#endif
-
-#elif ( defined(__unix__) || defined(__linux__) )
-
-#ifdef EXPORT_FLAG
-#define DLL_FLAG __attribute__((__visibility__("default")))
-#else
-#define DLL_FLAG __attribute__((__visibility__("default")))
-#endif
-
-#endif
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
 #include <exception>
 #include <iostream>
 #include <string>
-#include <vector>
+#include <thread>
 #include <chrono>
+
+#include <for_dll.hpp>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-extern "C" DLL_FLAG void empty_lib(void);
+#define CATCH_MACRO \
+catch (std::exception& e) {\
+    printf("Func : %s() : Exception : %s\n", ((std::string)__func__).c_str(), e.what());\
+}\
+catch (...) {\
+    printf("Func : %s() : Exception : unknown exception\n", ((std::string)__func__).c_str());\
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int main(void);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////

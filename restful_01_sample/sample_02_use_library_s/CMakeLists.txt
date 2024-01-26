@@ -11,15 +11,15 @@ endif()
 # Start project
 ################################################################################
 #project(##### VERSION 0.1 DESCRIPTION "#####" LANGUAGES NONE)
-set(PROJECT_NAME sample_01_make_library)
-set(ROOT_NAMESPACE sample_01_make_library)
+set(PROJECT_NAME sample_02_use_library_s)
+set(ROOT_NAMESPACE sample_02_use_library_s)
 message(STATUS "PROJECT_NAME : [${PROJECT_NAME}]")
 message(STATUS "ROOT_NAMESPACE : [${ROOT_NAMESPACE}]")
 
 ################################################################################
 # find_package
 ################################################################################
-find_package(cpprestsdk REQUIRED)
+#find_package(### REQUIRED)
 
 ################################################################################
 # Language C
@@ -129,4 +129,4 @@ endif()
 ################################################################################
 # Sub-projects
 ################################################################################
-add_subdirectory(set_lib_name)
+add_subdirectory(use_library_s)

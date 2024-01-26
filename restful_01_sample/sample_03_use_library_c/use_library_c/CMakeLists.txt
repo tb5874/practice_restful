@@ -1,5 +1,5 @@
-set(PROJECT_NAME set_exe_name)
-set(ROOT_NAMESPACE set_exe_name)
+set(PROJECT_NAME use_library_c)
+set(ROOT_NAMESPACE use_library_c)
 message(STATUS "PROJECT_NAME : [${PROJECT_NAME}]")
 message(STATUS "ROOT_NAMESPACE : [${ROOT_NAMESPACE}]")
 
@@ -118,6 +118,7 @@ if(WIN32)
             ">"
             # add directory path
             "${CMAKE_CURRENT_SOURCE_DIR}"
+            "${CMAKE_SOURCE_DIR}/restful_01_sample/sample_01_make_library/set_lib_name"
         ">"
     )
 elseif(UNIX)
@@ -165,7 +166,7 @@ elseif(UNIX)
         ">"
     )
 endif()
-target_link_directories(${PROJECT_NAME} PUBLIC "${ADDITIONAL_LIBRARY_DIRECTORIES}")
+target_link_directories(${PROJECT_NAME} PRIVATE "${ADDITIONAL_LIBRARY_DIRECTORIES}")
 message(STATUS "${PROJECT_NAME} : ADDITIONAL_LIBRARY_DIRECTORIES set to ${ADDITIONAL_LIBRARY_DIRECTORIES}")
 
 ################################################################################
@@ -175,13 +176,12 @@ if(WIN32)
     list(APPEND ADDITIONAL_LIBRARY_LINK
         "$<$<CONFIG:Debug>:"
             # add library
-            "set_lib_name"
         ">"
         "$<$<CONFIG:Release>:"
-            # add library
-            "set_lib_name"            
+            # add library            
         ">"
         # add library
+        "set_lib_name"
     )
 elseif(UNIX)
     list(APPEND ADDITIONAL_LIBRARY_LINK

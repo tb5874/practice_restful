@@ -1,5 +1,5 @@
-set(PROJECT_NAME set_lib_name)
-set(ROOT_NAMESPACE set_lib_name)
+set(PROJECT_NAME use_library_s)
+set(ROOT_NAMESPACE use_library_s)
 message(STATUS "PROJECT_NAME : [${PROJECT_NAME}]")
 message(STATUS "ROOT_NAMESPACE : [${ROOT_NAMESPACE}]")
 
@@ -29,15 +29,15 @@ message(STATUS "${PROJECT_NAME} : all_file set to [${all_file}]")
 ################################################################################
 # Executable or Library
 ################################################################################
-#add_executable(${PROJECT_NAME} ${all_file})
-add_library(${PROJECT_NAME} STATIC ${all_file})
+add_executable(${PROJECT_NAME} ${all_file})
+#add_library(${PROJECT_NAME} SHARED ${all_file})
 
 ################################################################################
 # User define flag
 ################################################################################
 list(APPEND USER_DEFINE_FLAG
     # add flag
-    EXPORT_FLAG
+    # EXPORT_FLAG
 )
 target_compile_definitions(${PROJECT_NAME} PRIVATE "${USER_DEFINE_FLAG}")
 message(STATUS "${PROJECT_NAME} : USER_DEFINE_FLAG set to [${USER_DEFINE_FLAG}]")
@@ -92,7 +92,7 @@ elseif(UNIX)
     list(APPEND LINK_OPTIONS
         "$<$<COMPILE_LANGUAGE:CXX>:"
             "$<$<CONFIG:Debug>:"
-                # add flag                
+                # add flag
             ">"
             "$<$<CONFIG:Release>:"
                 # add flag
@@ -117,7 +117,8 @@ if(WIN32)
                 # add directory path
             ">"
             # add directory path
-            "${CMAKE_CURRENT_SOURCE_DIR}"            
+            "${CMAKE_CURRENT_SOURCE_DIR}"
+            "${CMAKE_SOURCE_DIR}/restful_01_sample/sample_01_make_library/set_lib_name"
         ">"
     )
 elseif(UNIX)
@@ -149,7 +150,7 @@ if(WIN32)
             "$<$<CONFIG:Release>:"
                 # add directory path
             ">"
-            # add directory path            
+            # add directory path
         ">"
     )
 elseif(UNIX)
@@ -177,10 +178,10 @@ if(WIN32)
             # add library
         ">"
         "$<$<CONFIG:Release>:"
-            # add library
+            # add library            
         ">"
         # add library
-        "cpprestsdk::cpprest"
+        "set_lib_name"
     )
 elseif(UNIX)
     list(APPEND ADDITIONAL_LIBRARY_LINK
@@ -201,7 +202,7 @@ message(STATUS "${PROJECT_NAME} : ADDITIONAL_LIBRARY_LINK set to ${ADDITIONAL_LI
 ################################################################################
 #set(### "#####")
 #add_dependencies(${###} #####)
-set(CMAKE_SHARED_LIBRARY_PREFIX "")
+add_dependencies(${PROJECT_NAME} set_lib_name)
 
 ################################################################################
 # Post build copy
